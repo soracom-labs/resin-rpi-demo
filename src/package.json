@@ -1,0 +1,29 @@
+{
+  "name": "soracom-pi",
+  "description": "Soracom Raspberry Pi Demo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "jshint .",
+    "validate": "npm ls"
+  },
+  "author": "Alexis Susset <alexis@soracom.io>",
+  "dependencies": {
+    "figlet": "^1.2.0",
+    "moment-timezone": "^0.5.11",
+    "os-utils": "0.0.14",
+    "requestretry": "^1.12.0",
+    "rpi-info": "^1.0.3",
+    "winston": "^2.3.1"
+  },
+  "engines": {
+    "node": "7.4.0",
+    "npm": "4.1.2"
+  },
+  "license": "MIT",
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
+}
