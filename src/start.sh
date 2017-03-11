@@ -10,6 +10,7 @@ if [[ -n "${CELLULAR_ONLY}" ]]; then
 	echo "CELLULAR_ONLY enabled, disabling Ethernet and WiFi"
 	ifconfig wlan0 down
 	ifconfig eth0 down
+	sleep 22
 	# Make sure we still have a connection
 	curl -s --connect-timeout 52 http://www.google.com  > /dev/null
 	if [[ $? -eq 0 ]]; then
