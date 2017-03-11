@@ -8,18 +8,16 @@ fi
 
 if [[ -n "${CELLULAR_ONLY}" ]]; then
 	echo "CELLULAR_ONLY enabled, disabling Ethernet and WiFi"
-	/sbin/modprobe -r brcmfmac
-	/sbin/modprobe -r brcmutil
-	echo 0x0 > /sys/devices/platform/soc/3f980000.usb/buspower
+	ifconfig wlan0 down
+	ifconfig eth0 down
 	# Make sure we still have a connection
 	curl -s --connect-timeout 52 http://www.google.com  > /dev/null
 	if [[ $? -eq 0 ]]; then
 		echo "Ethernet and WiFi successfully disabled"
 	else
 		echo "Re-enabling Ethernet and WiFi as device didn't have internet without it"
-		/sbin/modprobe brcmfmac
-		/sbin/modprobe brcmutil
-		echo 0x1 > /sys/devices/platform/soc/3f980000.usb/buspower
+		ifconfig eth0 up
+		ifconfig wlan0 up
 	fi
 fi
 

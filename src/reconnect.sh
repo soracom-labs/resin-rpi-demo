@@ -10,13 +10,11 @@ if [[ $? != 0 ]]; then
     sleep 5
 	if [[ -n "${CELLULAR_ONLY}" ]]; then
 		# Reset WiFi
-		/sbin/modprobe -r brcmfmac
-		/sbin/modprobe -r brcmutil
-		echo 0x0 > /sys/devices/platform/soc/3f980000.usb/buspower
+		ifconfig wlan0 down
+		ifconfig eth0 down
 		sleep 5
-		/sbin/modprobe brcmfmac
-		/sbin/modprobe brcmutil
-		echo 0x1 > /sys/devices/platform/soc/3f980000.usb/buspower
+		ifconfig eth0 up
+		ifconfig wlan0 up
 		sleep 5
 	fi
     # Resin SUPERVISOR call to reboot the device
