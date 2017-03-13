@@ -11,12 +11,13 @@ var moment = require('moment-timezone'),
 	spawn = require('child_process').spawn,
 	request = require('requestretry'),
 	os = require('os-utils');
+
 // Setup base variables
-var console_logging = process.env.CONSOLE_LOGGING,
-	// Set to 1 to see logs in console
-	debug = process.env.DEBUG,
-	// Set to 1 to get debug messages
-	soracom_harvest_interval = process.env.SORACOM_HARVEST_INTERVAL; // Time in miliseconds
+var console_logging = process.env.CONSOLE_LOGGING,						// Set to 1 to see logs in console
+	debug = process.env.DEBUG,											// Set to 1 to get debug messages
+	soracom_harvest_interval = process.env.SORACOM_HARVEST_INTERVAL,	// Time in miliseconds
+	cellular_only = process.env.CELLULAR_ONLY;							// Checking for cellular setting as it's needed for Harvest
+
 // Setup logging
 if (console_logging) {
 	var logger = new winston.Logger({
@@ -37,6 +38,7 @@ if (console_logging) {
 		})]
 	});
 }
+
 // Logging with debug level when DEVELOPMENT is set
 if (debug) {
 	winston.transports.File = 'verbose';
@@ -44,6 +46,7 @@ if (debug) {
 		logger.transports.console.level = 'verbose';
 	}
 }
+
 // Display startup message
 console.log();
 console.log('              ..;;ttLLCCCCCCLLtt;;..              ');
@@ -78,14 +81,17 @@ console.log(figlet.textSync('soracom', {
 if (!console_logging) {
 	console.log('CONSOLE_LOGGING variable not set, running in quite mode');
 }
+
 // Setup Harvest data logging interval
-if (soracom_harvest_interval) {
+if (cellular_only && soracom_harvest_interval) {
 	setInterval(rpi_stats, soracom_harvest_interval);
+} else if(soracom_harvest_interval){
+	console.log('[ERROR] Both SORACOM_HARVEST_INTERVAL and CELLULAR_ONLY are required in order to use Soracom Harvest');
 } else {
 	setInterval(rpi_stats, 220000);
 }
-// App functions
 
+// App functions
 function rpi_stats() {
 	// Gather device data
 	var single_read_pi_temperature = spawn('/bin/cat', ['/sys/class/thermal/thermal_zone0/temp']);
@@ -118,4 +124,5 @@ function rpi_stats() {
 		}
 	});
 }
+
 // Real artists ship - Steve Jobs - http://c2.com/cgi/wiki?RealArtistsShip
