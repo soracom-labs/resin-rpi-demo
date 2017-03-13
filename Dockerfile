@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
+FROM resin/raspberrypi3-node:slim
 
 MAINTAINER Alexis Susset <alexis@soraocom.io>
 
@@ -19,4 +19,4 @@ COPY src /usr/src/app
 
 CMD modprobe i2c-dev
 
-CMD ["bash", "start.sh"]
+CMD ["bash", "/usr/src/app/start.sh"]
