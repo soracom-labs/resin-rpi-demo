@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script that tries to connect to google.com 
-curl -s --connect-timeout 52 http://www.google.com  > /dev/null
+curl -s --connect-timeout 52 http://ifconfig.io  > /dev/null
 if [[ $? != 0 ]]; then
     echo "Internet connection seems down, restarting device" >> /data/soracom.log;
     # Reset USB

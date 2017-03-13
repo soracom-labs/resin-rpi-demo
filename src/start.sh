@@ -12,7 +12,7 @@ if [[ -n "${CELLULAR_ONLY}" ]]; then
 	ifconfig eth0 down
 	sleep 22
 	# Make sure we still have a connection
-	curl -s --connect-timeout 52 http://www.google.com  > /dev/null
+	curl -s --connect-timeout 52 http://ifconfig.io  > /data/soracom.log
 	if [[ $? -eq 0 ]]; then
 		echo "Ethernet and WiFi successfully disabled"
 	else
@@ -26,6 +26,7 @@ fi
 sleep 5
 cd /usr/src/app
 pm2 -s link
+sleep 50
 pm2 -s start /usr/src/app/app.js --max-memory-restart 200M &
 # Start showing logs
 pm2 logs --out &
