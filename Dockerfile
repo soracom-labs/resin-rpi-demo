@@ -8,7 +8,7 @@ COPY motd /etc/motd
 WORKDIR /usr/src/app
 
 RUN apt-get update && apt-get install -yq \
-	curl dropbear && \
+	curl dropbear smstools && \
 	apt-get clean && \
 	JOBS=MAX npm install pm2 -g && \
 	JOBS=MAX npm install --production && \
