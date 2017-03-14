@@ -20,6 +20,9 @@ if [[ -n "${CELLULAR_ONLY}" ]]; then
 		ifconfig eth0 up
 		ifconfig wlan0 up
 	fi
+else
+	ifconfig eth0 up
+	ifconfig wlan0 up
 fi
 
 # Start pm2 process to run app.js forever
