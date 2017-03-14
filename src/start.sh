@@ -28,7 +28,7 @@ cd /usr/src/app
 pm2 -s link
 pm2 -s start /usr/src/app/app.js --max-memory-restart 200M &
 # Start showing logs
-# pm2 logs --out > /dev/null &
+pm2 logs --out &
 
 # Run connection check script every 15mins
 while :
