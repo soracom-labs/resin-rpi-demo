@@ -1,4 +1,4 @@
-FROM resin/raspberrypi3-node:slim
+FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 
 MAINTAINER Alexis Susset <alexis@soraocom.io>
 
