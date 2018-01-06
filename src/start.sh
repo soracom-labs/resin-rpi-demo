@@ -1,28 +1,41 @@
 #!/bin/bash
-if [[ -n "${SSH_PASSWD}" ]]; then
-	#Set the root password
-	echo "root:$SSH_PASSWD" | chpasswd
-	#Spawn dropbear
-	dropbear -E -F &
+# Setup logging function
+function log {
+	if [[ "${CONSOLE_LOGGING}" == "1" ]]; then
+		echo "[$(date --rfc-3339=seconds)]: $*" >>/data/soracom.log;
+		echo "$*";
+	else
+    	echo "[$(date --rfc-3339=seconds)]: $*" >>/data/soracom.log;
+    fi
+}
+
+# Check if CONSOLE_LOGGING is set, otherwise indicate that logging is going to /data/soracom.log
+if [[ "${CONSOLE_LOGGING}" == "1" ]]; then
+	echo "CONSOLE_LOGGING is set to 1, logging to console and /data/soracom.log"
+else
+	echo "CONSOLE_LOGGING isn't set to 1, logging to /data/soracom.log"
 fi
 
-if [[ -n "${CELLULAR_ONLY}" ]]; then
-	echo "CELLULAR_ONLY enabled, disabling Ethernet and WiFi"
-	ifconfig wlan0 down
-	ifconfig eth0 down
-	sleep 22
-	# Make sure we still have a connection
-	curl -s --connect-timeout 52 http://ifconfig.io  > /data/soracom.log
+# Check if we should disable non-cellular connectivity
+if [[ -n "${CELLULAR_ONLY+x}" ]]; then
+	log "Starting device in Cellular mode"
+	ls /sys/class/net | grep -q wlan0
 	if [[ $? -eq 0 ]]; then
-		echo "Ethernet and WiFi successfully disabled"
-	else
-		echo "Re-enabling Ethernet and WiFi as device didn't have internet without it"
-		ifconfig eth0 up
-		ifconfig wlan0 up
+		ifconfig wlan0 down
+	fi
+	ls /sys/class/net | grep -q eth0
+	if [[ $? -eq 0 ]]; then
+		ifconfig eth0 down
 	fi
 else
-	ifconfig eth0 up
-	ifconfig wlan0 up
+	ls /sys/class/net | grep -q wlan0
+	if [[ $? -eq 0 ]]; then
+		ifconfig wlan0 up
+	fi
+	ls /sys/class/net | grep -q eth0
+	if [[ $? -eq 0 ]]; then
+		ifconfig eth0 up
+	fi
 fi
 
 # Start pm2 process to run app.js forever
@@ -37,5 +50,5 @@ pm2 logs --out &
 while :
 do
 	sleep 900;
-	bash /usr/src/app/reconnect.sh;
+	log `/usr/src/app/reconnect.sh`
 done

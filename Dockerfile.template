@@ -3,7 +3,11 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 MAINTAINER Alexis Susset <alexis@soraocom.io>
 
 COPY src/package.json /usr/src/app/package.json
-COPY motd /etc/motd
+COPY src/app.js /usr/src/app/app.js
+COPY src/start.sh /usr/src/app/start.sh
+COPY src/reconnect.sh /usr/src/app/reconnect.sh
+COPY src/entry.sh /usr/bin/entry.sh
+COPY src/motd /etc/motd
 
 WORKDIR /usr/src/app
 
@@ -14,8 +18,9 @@ RUN apt-get update && apt-get install -yq \
 	JOBS=MAX npm install --production && \
 	rm -rf /tmp/*
 
-# Copy all our source
-COPY src /usr/src/app
+RUN chmod 777 /usr/src/app/start.sh
+RUN chmod 777 /usr/src/app/reconnect.sh
+RUN chmod 777 /usr/bin/entry.sh
 
 CMD modprobe i2c-dev
 
