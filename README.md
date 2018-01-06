@@ -5,7 +5,7 @@ This application also leverages Soracom's Harvest service which lets you store a
 
 # Setup  
 1. In order to use a 3G Dongle with ResinOS 2.x and Soracom, you will have two choices after creating your Resin.io based App+Device:  
-    1. Place the soracom GSM configuration file on your device's SD card in /system-connections/ using the following command: `cp soracom-resin/soracom /Volume/resin-boot/system-connections/`  
+    1. Place the soracom GSM configuration file on your device's SD card in /system-connections/ using the following command: `cp soracom /Volume/resin-boot/system-connections/`  
   
 1. In your resin.io Application, please make sure to set the following Fleet Configuration variables to ensure that your Cellular modem has enough power:  
     1. RESIN_HOST_CONFIG_max_usb_current = 1  
