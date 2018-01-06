@@ -29,6 +29,41 @@ Be sure to use the latest version of ResinOS in order to have full support of yo
   
 We've tested the following Application with Huawei MS2131, MS2372, ME909, MU709 and Quectel EC21  
 
+Once your application has been successfully started, you will see Soracom's ASCII logo in resin.io console (with or without CONSOLE_LOGGING enabled):  
+```
+              ..;;ttLLCCCCCCLLtt;;..
+          ..11CCCCCCCCCCCCCCCCCCCCCC11..
+        ::LLCCCCCCttii::,,::iittCCCCCCLL::
+      ::CCCCCC11..              ..11CCCCCC::
+    ::CCCCCCCCttii::..              ::LLCCCC::
+  ..LLCCCCCCCCCCCCCCCCffii::..        ,,LLCCLL..
+  11CCCC::,,;;ttLLCCCCCCCCCCCCff11::..  ::CCCC11
+..CCCC11          ,,;;11LLCCCCCCCCCCCC..  11CCCC..
+iiCCCC,,                  ..::11LLCCCC..  ,,CCCCii
+ttCCff                          ;;CCCC..    ffCCff
+LLCCii                          ;;CCCC..    iiCCLL
+CCCC;;                        ,,11CCCC..    ;;CCCC
+CCCC::                ,,iittLLCCCCCCCC..    ::CCCC
+CCCC;;      ..::iittCCCCCCCCCCCCCCffii      ;;CCCC
+LLCCii    ;;CCCCCCCCCCCCLLttii,,            iiCCLL
+ttCCff    ..LLCCCCtt;;,,          ::        ffCCff
+iiCCCC,,    iiCCCC,,          ,,::tt,,..  ,,CCCCii
+..CCCC11    ..LLCCtt          ;;LLCCtt..  11CCCC..
+  11CCCC::    iiCCCC,,          LLff;;  ::CCCC11
+  ..LLCCLL,,  ..LLCCtt  ..tt11..,,  ::,,LLCCLL..
+    ::CCCCLL::  iiCCCC::ffCCCC;;    ::LLCCCC::
+      ::CCCCCC11,,LLCCCCCCCC11  ..11CCCCCC::
+        ,,LLCCCCCCLLCCCCCCffiittCCCCCCLL::
+          ..11LLCCCCCCCCCCCCCCCCCCLL11..
+              ..;;ttLLCCCCCCLLtt;;..
+
+  ___  ___  _ __ __ _  ___ ___  _ __ ___
+ / __|/ _ \| '__/ _` |/ __/ _ \| '_ ` _ \
+ \__ \ (_) | | | (_| | (_| (_) | | | | | |
+ |___/\___/|_|  \__,_|\___\___/|_| |_| |_|
+
+```
+
 # Credits
 Feel free to visit our [Soracom](https://www.soracom.io) website if you'd like to get your Sim card and Dongle as well as learn more about various IoT topics  
 And thank you to the folks at [Resin.io](https://www.resin.io) for making their awesome platform  
