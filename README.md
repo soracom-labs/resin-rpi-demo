@@ -11,7 +11,7 @@ This application also leverages Soracom's Harvest service which lets you store a
     1. RESIN_HOST_CONFIG_max_usb_current = 1  
     1. RESIN_HOST_CONGIG_safe_mode_gpio = 4  
   
-1.You can also add the following Fleet Configuration variable to save bandwidth when pushing updates to your container:
+1.You can also add the following Fleet Configuration variable to save bandwidth when pushing updates to your container:  
     1. RESIN_SUPERVISOR_DELTA = 1  
   
 Once this is done, connect the Dongle, boot the device and it should come online on your resin.io dashboard  
