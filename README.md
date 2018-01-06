@@ -32,3 +32,5 @@ We've tested the following Application with Huawei MS2131, MS2372, ME909, MU709 
 # Credits
 Feel free to visit our [Soracom](https://www.soracom.io) website if you'd like to get your Sim card and Dongle as well as learn more about various IoT topics  
 And thank you to the folks at [Resin.io](https://www.resin.io) for making their awesome platform  
+
+![Soracom Developers](https://raw.githubusercontent.com/soracom/resin-rpi-demo/master/logo_developers_head.png)
