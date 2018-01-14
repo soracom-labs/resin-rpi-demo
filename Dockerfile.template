@@ -12,7 +12,7 @@ COPY src/motd /etc/motd
 WORKDIR /usr/src/app
 
 RUN apt-get update && apt-get install -yq \
-	net-tools curl && \
+	net-tools curl watchdog && \
 	apt-get clean && \
 	JOBS=MAX npm install pm2 -g && \
 	JOBS=MAX npm install --production && \
@@ -22,6 +22,6 @@ RUN chmod 777 /usr/src/app/start.sh
 RUN chmod 777 /usr/src/app/reconnect.sh
 RUN chmod 777 /usr/bin/entry.sh
 
-CMD modprobe i2c-dev
+ENV INITSYSTEM off
 
 CMD ["bash", "/usr/src/app/start.sh"]
