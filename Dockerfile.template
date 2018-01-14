@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -yq \
 	apt-get clean && \
 	JOBS=MAX npm install pm2 -g && \
 	JOBS=MAX npm install --production && \
-	rm -rf /tmp/*
+	rm -rf /tmp/*  && rm -rf /var/lib/apt/lists/*
 
 RUN chmod 777 /usr/src/app/start.sh
 RUN chmod 777 /usr/src/app/reconnect.sh

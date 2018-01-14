@@ -39,19 +39,19 @@ else
 fi
 
 # Start Linux watchdog
-log `/etc/init.d/watchdog start`
+log "`/etc/init.d/watchdog start`"
 
 # Start pm2 process to run app.js forever
 sleep 5
 cd /usr/src/app
-pm2 -s link
-pm2 -s start /usr/src/app/app.js --max-memory-restart 200M &
+log "`pm2 -s link`"
+log "`pm2 -s start /usr/src/app/app.js --max-memory-restart 200M &`"
 # Start showing logs
-pm2 logs --out &
+log "`pm2 logs --out &`"
 
 # Run connection check script every 15mins
 while :
 do
 	sleep 900;
-	log `/usr/src/app/reconnect.sh`
+	log "`/usr/src/app/reconnect.sh`"
 done
