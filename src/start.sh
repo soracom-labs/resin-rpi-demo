@@ -39,7 +39,7 @@ else
 fi
 
 # Start Linux watchdog
-log "`/etc/init.d/watchdog start`"
+log "`service watchdog start`"
 
 # Start pm2 process to run app.js forever
 sleep 5
